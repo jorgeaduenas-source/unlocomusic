@@ -24,29 +24,25 @@ body{
     max-width:1100px;
 }
 
+/* Entire image links to Facebook */
+.main-link{
+    display:block;
+}
+
 .logo{
     width:100%;
     display:block;
 }
 
-/* Facebook icon click area */
-.facebook-hotspot{
-    position:absolute;
-    left:41.5%;
-    bottom:12%;
-    width:10%;
-    height:10%;
-    border-radius:50%;
-}
-
-/* Instagram icon click area */
+/* Instagram icon hotspot */
 .instagram-hotspot{
     position:absolute;
-    left:50.5%;
-    bottom:12%;
-    width:10%;
-    height:10%;
+    left:51%;
+    bottom:13%;
+    width:9%;
+    height:9%;
     border-radius:50%;
+    z-index:10;
 }
 
 </style>
@@ -57,14 +53,17 @@ body{
 
 <div class="logo-wrap">
 
-    <img src="unloco-logo.png" class="logo" alt="Ünloco">
-
     <a
-        class="facebook-hotspot"
+        class="main-link"
         href="https://www.facebook.com/unlocotx"
         target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook">
+        rel="noopener noreferrer">
+
+        <img
+            src="unloco-logo.png"
+            class="logo"
+            alt="Ünloco">
+
     </a>
 
     <a
