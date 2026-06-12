@@ -9,40 +9,72 @@
 
 <style>
 
-body{
+html, body{
     margin:0;
+    min-height:100%;
     background:#08131d;
+}
+
+body{
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
 }
 
-.logo-wrap{
+.hero-wrap{
     position:relative;
-    width:95%;
-    max-width:1100px;
+    width:min(100vw, 1920px);
 }
 
-/* Entire image links to Facebook */
-.main-link{
-    display:block;
-}
-
-.logo{
+.hero{
     width:100%;
     display:block;
 }
 
-/* Instagram icon hotspot */
+/* Facebook icon click area */
+.facebook-hotspot{
+    position:absolute;
+    left:43.6%;
+    bottom:6.6%;
+    width:5.1%;
+    height:9.0%;
+    border-radius:50%;
+}
+
+/* Instagram icon click area */
 .instagram-hotspot{
     position:absolute;
-    left:51%;
-    bottom:13%;
-    width:9%;
-    height:9%;
+    left:51.2%;
+    bottom:6.6%;
+    width:5.1%;
+    height:9.0%;
     border-radius:50%;
-    z-index:10;
+}
+
+@media (max-aspect-ratio: 4/5){
+
+    body{
+        align-items:flex-start;
+    }
+
+    .hero{
+        content:url("unloco-mobile-hero.png");
+    }
+
+    .facebook-hotspot{
+        left:39.0%;
+        bottom:20.7%;
+        width:9.5%;
+        height:6.5%;
+    }
+
+    .instagram-hotspot{
+        left:51.5%;
+        bottom:20.7%;
+        width:9.5%;
+        height:6.5%;
+    }
 }
 
 </style>
@@ -51,19 +83,16 @@ body{
 
 <body>
 
-<div class="logo-wrap">
+<div class="hero-wrap">
+
+    <img src="unloco-web-hero.png" class="hero" alt="Ünloco">
 
     <a
-        class="main-link"
+        class="facebook-hotspot"
         href="https://www.facebook.com/unlocotx"
         target="_blank"
-        rel="noopener noreferrer">
-
-        <img
-            src="unloco-logo.png"
-            class="logo"
-            alt="Ünloco">
-
+        rel="noopener noreferrer"
+        aria-label="Facebook">
     </a>
 
     <a
