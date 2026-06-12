@@ -9,23 +9,23 @@
 
 <style>
 
-html,
-body{
+html, body{
     margin:0;
     padding:0;
     background:#08131d;
 }
 
 body{
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
 }
 
 .hero-wrap{
     position:relative;
-    width:min(100vw,1920px);
+    width:100vw;
+    max-width:1920px;
 }
 
 .hero{
@@ -33,36 +33,16 @@ body{
     display:block;
 }
 
-/* Instagram hotspot */
-
+/* Instagram hotspot - visible for testing */
 .instagram-hotspot{
     position:absolute;
-    left:51%;
-    bottom:6.5%;
-    width:5%;
-    height:9%;
-    z-index:10;
-
-    background:red;
-    opacity:.5;
-}
-
-/* Mobile */
-
-@media (max-aspect-ratio:4/5){
-
-    body{
-        align-items:flex-start;
-    .instagram-hotspot{
     left:54%;
     bottom:11%;
     width:10%;
     height:6%;
-}
-        bottom:10%;
-        width:12%;
-        height:7%;
-    }
+    z-index:100;
+    background:red;
+    opacity:.5;
 }
 
 </style>
@@ -73,12 +53,11 @@ body{
 
 <div class="hero-wrap">
 
-    <!-- Entire image goes to Facebook -->
-
     <a
         href="https://www.facebook.com/unlocotx"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+        aria-label="Facebook">
 
         <img
             src="unloco-web-hero.png"
@@ -86,8 +65,6 @@ body{
             alt="Ünloco">
 
     </a>
-
-    <!-- Instagram icon only -->
 
     <a
         class="instagram-hotspot"
