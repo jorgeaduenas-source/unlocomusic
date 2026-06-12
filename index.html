@@ -9,61 +9,61 @@
 
 <style>
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background: #08131d;
+html,
+body{
+    margin:0;
+    padding:0;
+    background:#08131d;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
 }
 
-.hero-wrap {
-    position: relative;
-    width: 100%;
-    max-width: 1920px;
-}
-/* Instagram click area */
-.instagram-hotspot {
-    position: absolute;
-    left: 51.8%;
-    bottom: 5.2%;
-    width: 8%;
-    height: 8%;
-    z-index: 100;
-    background: red;
-    opacity: 0.5;
-}
-    position: absolute;
-    left: 50.5%;
-    bottom: 6%;
-    width: 7%;
-    height: 11%;
-    z-index: 100;
+.hero-wrap{
+    position:relative;
+    width:min(100vw,1920px);
 }
 
-/* Mobile layout */
-@media (max-aspect-ratio: 4/5) {
+.hero{
+    width:100%;
+    display:block;
+}
 
-    body {
-        align-items: flex-start;
+/* Instagram hotspot */
+
+.instagram-hotspot{
+    position:absolute;
+    left:51%;
+    bottom:6.5%;
+    width:5%;
+    height:9%;
+    z-index:10;
+
+    background:red;
+    opacity:.5;
+}
+
+/* Mobile */
+
+@media (max-aspect-ratio:4/5){
+
+    body{
+        align-items:flex-start;
     }
 
-    .hero {
-        content: url("unloco-mobile-hero.png");
+    .hero{
+        content:url("unloco-mobile-hero.png");
+    }
+
     .instagram-hotspot{
-    left:73%;
-    bottom:10%;
-    width:12%;
-    height:7%;
-    background:red;
-    opacity:0.5;
-}
-        height: 8%;
+        left:73%;
+        bottom:10%;
+        width:12%;
+        height:7%;
     }
 }
 
@@ -75,12 +75,12 @@ body {
 
 <div class="hero-wrap">
 
-    <!-- EVERYTHING goes to Facebook -->
+    <!-- Entire image goes to Facebook -->
+
     <a
         href="https://www.facebook.com/unlocotx"
         target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook">
+        rel="noopener noreferrer">
 
         <img
             src="unloco-web-hero.png"
@@ -90,6 +90,7 @@ body {
     </a>
 
     <!-- Instagram icon only -->
+
     <a
         class="instagram-hotspot"
         href="https://www.instagram.com/unlocotx"
