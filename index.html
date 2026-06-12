@@ -9,10 +9,12 @@
 
 <style>
 
-html, body{
+html,
+body{
     margin:0;
     padding:0;
     background:#08131d;
+    overflow-x:hidden;
 }
 
 body{
@@ -24,8 +26,8 @@ body{
 
 .hero-wrap{
     position:relative;
-    width:100vw;
-    max-width:1920px;
+    width:95vw;
+    max-width:1200px;
 }
 
 .hero{
@@ -33,14 +35,16 @@ body{
     display:block;
 }
 
-/* Instagram hotspot - visible for testing */
+/* Instagram hotspot */
+
 .instagram-hotspot{
     position:absolute;
-    left:54%;
+    left:51.5%;
     bottom:11%;
     width:10%;
     height:6%;
     z-index:100;
+
     background:red;
     opacity:.5;
 }
@@ -53,11 +57,12 @@ body{
 
 <div class="hero-wrap">
 
+    <!-- Entire image opens Facebook -->
+
     <a
         href="https://www.facebook.com/unlocotx"
         target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook">
+        rel="noopener noreferrer">
 
         <img
             src="unloco-web-hero.png"
@@ -65,6 +70,8 @@ body{
             alt="Ünloco">
 
     </a>
+
+    <!-- Instagram hotspot -->
 
     <a
         class="instagram-hotspot"
