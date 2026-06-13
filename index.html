@@ -1,100 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ünloco</title>
 
 <script data-goatcounter="https://unlocomusic.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
 
 <style>
-
 html, body{
     margin:0;
     padding:0;
     background:#08131d;
     overflow-x:hidden;
 }
-
 body{
     display:flex;
     justify-content:center;
     align-items:flex-start;
     min-height:100vh;
 }
-
 .hero-wrap{
     position:relative;
     width:100%;
     max-width:1920px;
 }
-
 .hero{
     width:100%;
     display:block;
 }
-
 /* Instagram hotspot */
 .instagram-hotspot{
     position:absolute;
-    left:49.5%;
-    bottom:11%;
-    width:10%;
-    height:6%;
     z-index:999;
 }
-
-/* Mobile layout */
+/* Mobile */
 @media (max-aspect-ratio: 4/5){
-
     .hero{
         content:url("unloco-mobile-hero.png");
-        width:100%;
     }
-
     .instagram-hotspot{
-        left:50%;
-        bottom:6%;
+        left:48%;
+        bottom:5.2%;
         width:18%;
         height:10%;
     }
 }
-
+/* Desktop */
+@media (min-aspect-ratio: 4/5){
+    .instagram-hotspot{
+        left:49%;
+        bottom:10.5%;
+        width:8%;
+        height:7%;
+    }
+}
 </style>
-
 </head>
-
 <body>
-
 <div class="hero-wrap">
-
-    <!-- Entire image goes to Facebook -->
-    <a
-        href="https://www.facebook.com/unlocotx"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook">
-
-        <img
-            src="unloco-web-hero.png"
-            class="hero"
-            alt="Ünloco">
-
-    </a>
-
-    <!-- Instagram icon only -->
-    <a
-        class="instagram-hotspot"
-        href="https://www.instagram.com/unlocotx"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram">
-    </a>
-
+<a
+    href="https://www.facebook.com/unlocotx"
+    target="_blank"
+    rel="noopener noreferrer">
+    <img
+        src="unloco-web-hero.png"
+        class="hero"
+        alt="Ünloco">
+</a>
+<a
+    class="instagram-hotspot"
+    href="https://www.instagram.com/unlocotx"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram">
+</a>
 </div>
-
 </body>
 </html>
