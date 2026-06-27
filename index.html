@@ -10,31 +10,30 @@ html, body{
     margin:0;
     padding:0;
     background:#000;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
 body{
     min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     background:#000;
 }
 
 .hero-wrap{
     position:relative;
-    width:100%;
-    max-width:1920px;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
     background:#000;
 }
 
 .hero{
     width:100%;
+    height:100%;
+    object-fit:contain;
     display:block;
-    background:#000;
 }
 
-/* Social button row */
+/* Social buttons */
 .socials{
     position:absolute;
     left:50%;
@@ -69,24 +68,19 @@ body{
     box-shadow:0 0 14px rgba(0,183,216,.45);
 }
 
-.socials a:hover{
-    background:#00b7d8;
-    color:#000;
-}
-
 /* Mobile */
 @media (max-aspect-ratio:4/5){
-    body{
-        align-items:center;
-    }
 
     .hero{
         content:url("unloco-mobile-hero.png");
+        object-fit:contain;
+        transform:scale(1.55);
+        transform-origin:center center;
     }
 
     .socials{
         opacity:1;
-        bottom:5.2%;
+        bottom:6%;
         gap:10px;
     }
 
@@ -103,17 +97,14 @@ body{
 
 <div class="hero-wrap">
 
-    <img
-        src="unloco-web-hero.png"
-        class="hero"
-        alt="Ünloco">
+    <img src="unloco-web-hero.png" class="hero" alt="Ünloco">
 
     <div class="socials">
-        <a href="https://www.facebook.com/unlocotx" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-        <a href="https://www.instagram.com/unlocotx" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
-        <a href="https://www.youtube.com/@unlocotx" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
-        <a href="https://x.com/unloco_official" target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
-        <a href="https://www.tiktok.com/@unlocotx" target="_blank" rel="noopener noreferrer" aria-label="TikTok">♪</a>
+        <a href="https://www.facebook.com/unlocotx" target="_blank" rel="noopener noreferrer">f</a>
+        <a href="https://www.instagram.com/unlocotx" target="_blank" rel="noopener noreferrer">◎</a>
+        <a href="https://www.youtube.com/@unlocotx" target="_blank" rel="noopener noreferrer">▶</a>
+        <a href="https://x.com/unloco_official" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://www.tiktok.com/@unlocotx" target="_blank" rel="noopener noreferrer">♪</a>
     </div>
 
 </div>
