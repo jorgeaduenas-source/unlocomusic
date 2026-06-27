@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ünloco</title>
+
+<style>
+html, body{
+    margin:0;
+    padding:0;
+    background:#000;
+    overflow-x:hidden;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+}
+
+.hero-wrap{
+    position:relative;
+    width:100%;
+    max-width:1920px;
+    background:#000;
+}
+
+.hero{
+    width:100%;
+    display:block;
+    background:#000;
+}
+
+/* Social button row */
+.socials{
+    position:absolute;
+    left:50%;
+    bottom:5.5%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:18px;
+    z-index:999;
+    opacity:0;
+    transition:opacity .25s ease;
+}
+
+.hero-wrap:hover .socials,
+.hero-wrap:active .socials{
+    opacity:1;
+}
+
+.socials a{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    border:1px solid #00b7d8;
+    background:rgba(0,0,0,.72);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-family:Arial, sans-serif;
+    font-weight:bold;
+    font-size:18px;
+    box-shadow:0 0 14px rgba(0,183,216,.45);
+}
+
+.socials a:hover{
+    background:#00b7d8;
+    color:#000;
+}
+
+/* Mobile */
+@media (max-aspect-ratio:4/5){
+    body{
+        align-items:center;
+    }
+
+    .hero{
+        content:url("unloco-mobile-hero.png");
+    }
+
+    .socials{
+        opacity:1;
+        bottom:5.2%;
+        gap:10px;
+    }
+
+    .socials a{
+        width:46px;
+        height:46px;
+        font-size:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero-wrap">
+
+    <img
+        src="unloco-web-hero.png"
+        class="hero"
+        alt="Ünloco">
+
+    <div class="socials">
+        <a href="https://www.facebook.com/unlocotx" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+        <a href="https://www.instagram.com/unlocotx" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
+        <a href="https://www.youtube.com/@unlocotx" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+        <a href="https://x.com/unloco_official" target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
+        <a href="https://www.tiktok.com/@unlocotx" target="_blank" rel="noopener noreferrer" aria-label="TikTok">♪</a>
+    </div>
+
+</div>
+
+</body>
+</html>
