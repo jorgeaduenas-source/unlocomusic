@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ünloco Vision</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #090909;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+      width: min(900px, 92%);
+      margin: 0 auto;
+      padding: 60px 0 80px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .accent {
+      color: #e32636;
+    }
+
+    .intro {
+      color: #cccccc;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 18px 0 36px;
+    }
+
+    .card {
+      background: #151515;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 24px;
+    }
+
+    input[type="file"] {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      margin: 18px 0;
+      color: #dddddd;
+      background: #0d0d0d;
+      border: 1px dashed #555555;
+      border-radius: 10px;
+    }
+
+    button {
+      background: #e32636;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      padding: 13px 22px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #status {
+      margin-top: 18px;
+      color: #cccccc;
+    }
+
+    #results {
+      margin-top: 36px;
+    }
+
+    #output {
+      width: 100%;
+      max-height: 850px;
+      object-fit: contain;
+      background: #000;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    #counts {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    #counts li {
+      padding: 14px;
+      background: #0d0d0d;
+      border: 1px solid #292929;
+      border-radius: 8px;
+    }
+
+    .future {
+      margin-top: 45px;
+      padding-top: 24px;
+      border-top: 1px solid #292929;
+      color: #888888;
+      font-size: 0.9rem;
+    }
+
+    .powered {
+      margin-top: 40px;
+      color: #666666;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <h1>Ünloco <span class="accent">Vision</span></h1>
+
+    <p class="intro">
+      Upload a concert photo and let computer vision identify people,
+      guitars, bass guitars, drums and microphones in the image.
+    </p>
+
+    <section class="card">
+      <h2>Analyze a Concert Photo</h2>
+
+      <form id="upload">
+        <input
+          id="photo"
+          type="file"
+          accept="image/jpeg,image/png"
+          required
+        >
+
+        <button id="analyze" type="submit">
+          Analyze Photo
+        </button>
+      </form>
+
+      <p id="status" role="status"></p>
+    </section>
+
+    <section id="results" class="card" hidden>
+      <h2>What Vision Found</h2>
+
+      <ul id="counts"></ul>
+
+      <img
+        id="output"
+        alt="Concert photo with detected objects labeled"
+      >
+    </section>
+
+    <section class="future">
+      <strong>Coming later:</strong>
+      Fan photo submissions and the Ünloco visual archive.
+      Submitted photos will require approval before appearing publicly.
+    </section>
+
+    <div class="powered">
+      Computer vision powered by Roboflow.
+    </div>
+
+  </main>
+
+  <script>
+    const form = document.querySelector("#upload");
+    const photoInput = document.querySelector("#photo");
+    const button = document.querySelector("#analyze");
+    const status = document.querySelector("#status");
+    const results = document.querySelector("#results");
+    const output = document.querySelector("#output");
+    const list = document.querySelector("#counts");
+
+    const API_URL =
+      "https://unloco-vision-backend.onrender.com/api/analyze";
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const file = photoInput.files[0];
+
+      if (!file) {
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        status.textContent =
+          "Please choose a JPEG or PNG smaller than 10 MB.";
+        return;
+      }
+
+      button.disabled = true;
+      results.hidden = true;
+      status.textContent =
+        "Analyzing your photo… this may take a moment.";
+
+      try {
+        const base64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+
+          reader.onload = () => {
+            resolve(reader.result.split(",")[1]);
+          };
+
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            image: base64
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error || "Photo analysis failed."
+          );
+        }
+
+        output.src = data.imageUrl;
+
+        list.replaceChildren();
+
+        const categories = {
+          person: "People",
+          guitar: "Guitars",
+          "bass guitar": "Bass guitars",
+          drums: "Drums",
+          microphone: "Microphones"
+        };
+
+        for (const [key, label] of Object.entries(categories)) {
+          const item = document.createElement("li");
+
+          item.textContent =
+            `${label}: ${data.counts[key] ?? 0}`;
+
+          list.appendChild(item);
+        }
+
+        results.hidden = false;
+        status.textContent = "Analysis complete.";
+
+      } catch (error) {
+        console.error(error);
+
+        status.textContent =
+          "Something went wrong while analyzing the photo.";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
